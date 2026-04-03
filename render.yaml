@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: finance-flow-api
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npx ts-node src/index.ts
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        value: file:./prisma/dev.db
+    healthCheckPath: /health
+    autoDeploy: true
