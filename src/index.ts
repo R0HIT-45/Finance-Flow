@@ -6,10 +6,12 @@ import authRoutes from './routes/auth';
 import recordRoutes from './routes/records';
 
 const app = express();
+const PORT = process.env.PORT || 3000;
+
 app.use(express.json());
 
 app.get('/health', (req, res) => {
-  res.json({ status: 'OK' });
+  res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
 /**
@@ -28,7 +30,8 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
 app.use('/api/auth', authRoutes);
 app.use('/api/records', recordRoutes);
 
-app.listen(3000, () => {
-  console.log('Server running on port 3000');
-  console.log('📚 Swagger docs available at http://localhost:3000/api-docs');
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+  console.log(`📚 Swagger docs available at http://localhost:${PORT}/api-docs`);
+  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
 });
