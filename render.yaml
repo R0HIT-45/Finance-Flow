@@ -9,6 +9,6 @@ services:
       - key: NODE_ENV
         value: production
       - key: DATABASE_URL
-        value: file:./prisma/dev.db
+        value: file:./dev.db
     healthCheckPath: /health
     autoDeploy: true
