@@ -2,6 +2,27 @@
 
 A backend system designed to manage financial records with role-based access control, built using Node.js, Express, and Prisma. This project demonstrates clean architecture, secure authentication, and efficient data processing for dashboard analytics.
 
+## 🌍 LIVE DEPLOYMENT
+
+🟢 **API is LIVE and ready to use!**
+
+- **Live URL:** https://finance-flow-zvzq.onrender.com
+- **Interactive API Docs:** https://finance-flow-zvzq.onrender.com/api-docs ← **Test endpoints directly here!**
+- **Health Check:** https://finance-flow-zvzq.onrender.com/health
+
+### Quick Test
+```bash
+# Test the API health
+curl https://finance-flow-zvzq.onrender.com/health
+
+# Open Swagger docs in browser
+https://finance-flow-zvzq.onrender.com/api-docs
+```
+
+You can test all endpoints including Register, Login, Create Records, and Dashboard Summary directly in the browser! No Postman needed.
+
+---
+
 ## Architecture
 
 ```
@@ -57,6 +78,24 @@ This layered architecture ensures separation of concerns, testability, and maint
 
 ### Dashboard
 - `GET /api/records/summary` - Get income, expense, balance, and category breakdown
+
+## 📚 API Documentation
+
+### Interactive Swagger UI
+The API documentation is available through **Swagger UI** at:
+- **Live:** https://finance-flow-zvzq.onrender.com/api-docs
+- **Local:** http://localhost:3000/api-docs (when running locally)
+
+In Swagger UI, you can:
+✅ View all API endpoints with detailed descriptions
+✅ Test endpoints directly in the browser
+✅ See request/response schemas
+✅ Authenticate with JWT tokens
+✅ Try different parameters in real-time
+
+**No Postman or curl needed!** Test everything interactively.
+
+---
 
 ## Setup Instructions
 
@@ -278,6 +317,39 @@ Content-Type: application/json
 - **Soft Delete Instead of Hard Delete**: Records are marked deleted, not removed from database
 - **JWT Expiration**: Tokens have standard expiration; implement refresh tokens for longer sessions
 - **Single Admin Role**: Assumes one admin manages all users
+
+## 🚀 Deployment
+
+### Render.com (Current)
+The application is deployed and live on Render.com:
+
+- **Live API:** https://finance-flow-zvzq.onrender.com
+- **Swagger Docs:** https://finance-flow-zvzq.onrender.com/api-docs
+- **Health Check:** https://finance-flow-zvzq.onrender.com/health
+
+**Deployment Steps:**
+1. Push code to GitHub
+2. Connect GitHub repo to Render.com
+3. Render auto-deploys on every push to `main` branch
+4. API starts with compiled JavaScript and Prisma client
+
+**Build Command:** `npm install && npm run build && npx prisma generate`  
+**Start Command:** `npm start` (runs `node dist/index.js`)
+
+### Local Development
+```bash
+npm run dev        # Starts with nodemon (auto-reload)
+npm run build      # Compiles TypeScript to dist/
+npm start          # Runs compiled JavaScript
+```
+
+### Environment Variables Required
+```
+DATABASE_URL=file:./prisma/dev.db
+NODE_ENV=production
+```
+
+---
 
 ## Contributing
 
